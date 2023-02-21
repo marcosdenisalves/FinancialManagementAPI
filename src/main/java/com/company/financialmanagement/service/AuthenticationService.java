@@ -1,7 +1,11 @@
-package com.company.financialmanagement.auth;
+package com.company.financialmanagement.service;
 
+import com.company.financialmanagement.dto.AuthenticationDTO;
+import com.company.financialmanagement.exception.AlreadyRegisteredUseException;
+import com.company.financialmanagement.exception.NotFoundException;
+import com.company.financialmanagement.model.Token;
+import com.company.financialmanagement.dto.AuthenticationRegisterDTO;
 import com.company.financialmanagement.enums.Role;
-import com.company.financialmanagement.jwt.JwtService;
 import com.company.financialmanagement.model.User;
 import com.company.financialmanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +24,9 @@ public class AuthenticationService {
     private final UserRepository repository;
     private final JwtService jwtService;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public Token register(AuthenticationRegisterDTO request) {
         Optional<User> optional = repository.findByEmail(request.getEmail());
-        if (optional.isPresent()) throw new RuntimeException("This user is already registered");
+        if (optional.isPresent()) throw new AlreadyRegisteredUseException("The email "+ optional.get().getEmail() + " already is registered");
 
         var user = User.builder()
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -35,22 +39,23 @@ public class AuthenticationService {
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
 
-        return AuthenticationResponse.builder()
+        return Token.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public Token authenticate(AuthenticationDTO request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
+        var user = repository.findByEmail(request.getEmail()).orElseThrow(() ->
+                new NotFoundException(request.getEmail() + " not found"));
         var jwtToken = jwtService.generateToken(user);
 
-        return AuthenticationResponse.builder()
+        return Token.builder()
                 .token(jwtToken)
                 .build();    }
 }

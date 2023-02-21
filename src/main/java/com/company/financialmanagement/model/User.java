@@ -2,6 +2,7 @@ package com.company.financialmanagement.model;
 
 import com.company.financialmanagement.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,16 +22,20 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
+    @NotEmpty
     private String firstname;
+    @NotEmpty
     private String lastname;
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
@@ -42,6 +47,7 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -58,7 +64,7 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
-        return true;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 }

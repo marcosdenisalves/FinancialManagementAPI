@@ -1,5 +1,6 @@
-package com.company.financialmanagement.jwt;
+package com.company.financialmanagement.filter;
 
+import com.company.financialmanagement.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

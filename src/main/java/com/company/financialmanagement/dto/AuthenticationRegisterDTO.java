@@ -1,5 +1,6 @@
-package com.company.financialmanagement.auth;
+package com.company.financialmanagement.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest {
+public class AuthenticationRegisterDTO {
+    @NotEmpty
     private String firstname;
+    @NotEmpty
     private String lastname;
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String password;
 }

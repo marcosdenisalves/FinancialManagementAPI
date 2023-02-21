@@ -1,4 +1,4 @@
-package com.company.financialmanagement.auth;
+package com.company.financialmanagement.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthenticationResponse {
+public class Token {
     private String token;
 }

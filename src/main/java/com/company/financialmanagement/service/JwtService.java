@@ -1,4 +1,4 @@
-package com.company.financialmanagement.jwt;
+package com.company.financialmanagement.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
