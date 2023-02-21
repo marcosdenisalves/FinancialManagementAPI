@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -19,6 +21,9 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Optional<User> optional = repository.findByEmail(request.getEmail());
+        if (optional.isPresent()) throw new RuntimeException("This user is already registered");
+
         var user = User.builder()
                 .password(passwordEncoder.encode(request.getPassword()))
                 .firstname(request.getFirstname())
