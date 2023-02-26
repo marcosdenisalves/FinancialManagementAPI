@@ -21,6 +21,7 @@ public class ExpiredTokenHandler {
         details.add(exception.getMessage());
 
         ErrorExceptionHandler err = ErrorExceptionHandler.builder()
+                .timeStamp(LocalDateTime.now())
                 .status(HttpStatus.UNAUTHORIZED)
                 .message("Token is expired")
                 .errors(details).build();
