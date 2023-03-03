@@ -28,8 +28,10 @@ public class ExpiredTokenHandler {
 
         ObjectMapper mapper = new ObjectMapper();
 
+        String jsonObject = mapper.writeValueAsString(err);
+
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getWriter().write(mapper.writeValueAsString(err));
+        response.getWriter().write(jsonObject);
     }
 }
