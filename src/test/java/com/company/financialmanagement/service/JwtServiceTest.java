@@ -3,18 +3,16 @@ package com.company.financialmanagement.service;
 import com.company.financialmanagement.dto.AuthenticationRegisterDTO;
 import com.company.financialmanagement.model.User;
 import com.company.financialmanagement.repository.UserRepository;
-import org.junit.Test;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Optional;
-
-@DataJpaTest
-@RunWith(SpringRunner.class)
+@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JwtServiceTest {
     @Autowired
     private AuthenticationService authenticationService;

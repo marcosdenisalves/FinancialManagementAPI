@@ -1,6 +1,6 @@
 package com.company.financialmanagement.exception.exceptionHandler;
 
-import com.company.financialmanagement.exception.exceptionHandler.ErrorExceptionHandler;
+import com.company.financialmanagement.dto.JwtErrorExceptionDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +19,7 @@ public class ExpiredTokenHandler {
         List<String> details = new ArrayList<String>();
         details.add(exception.getMessage());
 
-        ErrorExceptionHandler err = ErrorExceptionHandler.builder()
-                .timeStamp(LocalDateTime.now())
+        JwtErrorExceptionDTO err = JwtErrorExceptionDTO.builder()
                 .status(HttpStatus.UNAUTHORIZED)
                 .message("Token is expired")
                 .errors(details).build();

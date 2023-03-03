@@ -9,6 +9,7 @@ import com.company.financialmanagement.enums.Role;
 import com.company.financialmanagement.model.User;
 import com.company.financialmanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,12 +18,18 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService {
-    private final AuthenticationManager authenticationManager;
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository repository;
-    private final JwtService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRepository repository;
+
+    @Autowired
+    private JwtService jwtService;
 
     public Token register(AuthenticationRegisterDTO request) {
         Optional<User> optional = repository.findByEmail(request.getEmail());
