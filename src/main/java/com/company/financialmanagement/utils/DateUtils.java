@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
+    private static final String DATE_FORMATTER= "dd-MM-yyyy HH:mm:ss";
+
     public static String generateTimeStamp() {
-        DateTimeFormatter isoDateTime = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         LocalDateTime now = LocalDateTime.now();
-        return now.format(isoDateTime);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+        return now.format(dateTimeFormatter);
     }
 }
