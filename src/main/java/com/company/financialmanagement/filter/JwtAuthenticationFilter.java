@@ -1,8 +1,7 @@
 package com.company.financialmanagement.filter;
 
-import com.company.financialmanagement.exception.exceptionHandler.ExpiredTokenHandler;
+import com.company.financialmanagement.exception.exceptionHandler.FilterExceptionHandler;
 import com.company.financialmanagement.service.JwtService;
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,8 +57,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
             filterChain.doFilter(request, response);
-        } catch (ExpiredJwtException exception) {
-            new ExpiredTokenHandler(response, exception);
+        } catch (Exception exception) {
+            new FilterExceptionHandler(response, exception);
             return;
         }
     }

@@ -1,10 +1,8 @@
 package com.company.financialmanagement.exception.exceptionHandler;
 
-import com.company.financialmanagement.dto.JwtErrorExceptionDTO;
+import com.company.financialmanagement.utils.DateUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -13,15 +11,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpiredTokenHandler {
+public class FilterExceptionHandler {
 
-    public ExpiredTokenHandler(@NonNull HttpServletResponse response, @NonNull ExpiredJwtException exception) throws IOException {
+    public FilterExceptionHandler(HttpServletResponse response, Exception exception) throws IOException {
         List<String> details = new ArrayList<String>();
         details.add(exception.getMessage());
 
-        JwtErrorExceptionDTO err = JwtErrorExceptionDTO.builder()
+        ErrorExceptionHandler err = ErrorExceptionHandler.builder()
+                .timeStamp(DateUtils.generateTimeStamp())
                 .status(HttpStatus.UNAUTHORIZED)
-                .message("Token is expired")
+                .message("Filter Exception")
                 .errors(details).build();
 
         ObjectMapper mapper = new ObjectMapper();

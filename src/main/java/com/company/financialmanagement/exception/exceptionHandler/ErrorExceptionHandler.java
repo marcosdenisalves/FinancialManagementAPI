@@ -15,8 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorExceptionHandler {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime timeStamp;
+    private String timeStamp;
     private HttpStatus status;
     private String message;
     private List<String> errors;
