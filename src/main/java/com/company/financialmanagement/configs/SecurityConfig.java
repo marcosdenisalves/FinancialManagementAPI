@@ -1,6 +1,6 @@
-package com.company.financialmanagement.config;
+package com.company.financialmanagement.configs;
 
-import com.company.financialmanagement.filter.JwtAuthenticationFilter;
+import com.company.financialmanagement.filters.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-package com.company.financialmanagement.service;
+package com.company.financialmanagement.services;
 
-import com.company.financialmanagement.dto.AuthenticationRegisterDTO;
-import com.company.financialmanagement.model.User;
-import com.company.financialmanagement.repository.UserRepository;
+import com.company.financialmanagement.dtos.AuthenticationRegisterDTO;
+import com.company.financialmanagement.models.User;
+import com.company.financialmanagement.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

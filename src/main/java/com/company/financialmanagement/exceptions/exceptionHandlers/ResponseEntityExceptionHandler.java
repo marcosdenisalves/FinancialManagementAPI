@@ -1,4 +1,4 @@
-package com.company.financialmanagement.exception.exceptionHandler;
+package com.company.financialmanagement.exceptions.exceptionHandlers;
 
 import org.springframework.http.ResponseEntity;
 

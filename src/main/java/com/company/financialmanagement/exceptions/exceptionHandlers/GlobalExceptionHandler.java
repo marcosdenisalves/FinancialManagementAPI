@@ -1,7 +1,7 @@
-package com.company.financialmanagement.exception.exceptionHandler;
+package com.company.financialmanagement.exceptions.exceptionHandlers;
 
-import com.company.financialmanagement.exception.AlreadyRegisteredUseException;
-import com.company.financialmanagement.exception.NotFoundException;
+import com.company.financialmanagement.exceptions.AlreadyRegisteredUseException;
+import com.company.financialmanagement.exceptions.NotFoundException;
 import com.company.financialmanagement.utils.DateUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.company.financialmanagement.model;
+package com.company.financialmanagement.models;
 
 import com.company.financialmanagement.enums.Role;
 import jakarta.persistence.*;

@@ -1,6 +1,6 @@
-package com.company.financialmanagement.config;
+package com.company.financialmanagement.configs;
 
-import com.company.financialmanagement.repository.UserRepository;
+import com.company.financialmanagement.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

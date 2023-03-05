@@ -1,12 +1,13 @@
-package com.company.financialmanagement.service;
+package com.company.financialmanagement.services;
 
-import com.company.financialmanagement.exception.exceptionHandler.ErrorExceptionHandler;
+import com.company.financialmanagement.exceptions.exceptionHandlers.ErrorExceptionHandler;
 import com.company.financialmanagement.utils.DateUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.http.*;
 
 
 import java.io.IOException;
@@ -21,8 +22,8 @@ public class FilterExceptionService {
 
         ErrorExceptionHandler err = ErrorExceptionHandler.builder()
                 .timeStamp(DateUtils.generateTimeStamp())
+                .message(getExceptionMessage(exception))
                 .status(HttpStatus.UNAUTHORIZED)
-                .message("Filter Exception")
                 .errors(details).build();
 
         ObjectMapper mapper = new ObjectMapper();
@@ -32,5 +33,15 @@ public class FilterExceptionService {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.getWriter().write(jsonObject);
+    }
+
+    private String getExceptionMessage(Exception exception) {
+        if (exception instanceof ExpiredJwtException)
+            return "Expired Token, please try to authenticate again";
+
+        else if (exception instanceof MalformedJwtException)
+            return "Invalid token, please check if this is a valid token";
+
+        return "";
     }
 }

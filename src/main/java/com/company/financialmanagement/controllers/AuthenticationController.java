@@ -1,9 +1,9 @@
-package com.company.financialmanagement.controller;
+package com.company.financialmanagement.controllers;
 
-import com.company.financialmanagement.dto.AuthenticationDTO;
-import com.company.financialmanagement.model.Token;
-import com.company.financialmanagement.service.AuthenticationService;
-import com.company.financialmanagement.dto.AuthenticationRegisterDTO;
+import com.company.financialmanagement.dtos.AuthenticationDTO;
+import com.company.financialmanagement.models.Token;
+import com.company.financialmanagement.services.AuthenticationService;
+import com.company.financialmanagement.dtos.AuthenticationRegisterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

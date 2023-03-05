@@ -1,14 +1,13 @@
-package com.company.financialmanagement.service;
+package com.company.financialmanagement.services;
 
-import com.company.financialmanagement.dto.AuthenticationDTO;
-import com.company.financialmanagement.exception.AlreadyRegisteredUseException;
-import com.company.financialmanagement.exception.NotFoundException;
-import com.company.financialmanagement.model.Token;
-import com.company.financialmanagement.dto.AuthenticationRegisterDTO;
+import com.company.financialmanagement.dtos.AuthenticationDTO;
+import com.company.financialmanagement.exceptions.AlreadyRegisteredUseException;
+import com.company.financialmanagement.exceptions.NotFoundException;
+import com.company.financialmanagement.models.Token;
+import com.company.financialmanagement.dtos.AuthenticationRegisterDTO;
 import com.company.financialmanagement.enums.Role;
-import com.company.financialmanagement.model.User;
-import com.company.financialmanagement.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import com.company.financialmanagement.models.User;
+import com.company.financialmanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -64,5 +63,6 @@ public class AuthenticationService {
 
         return Token.builder()
                 .token(jwtToken)
-                .build();    }
+                .build();
+    }
 }
