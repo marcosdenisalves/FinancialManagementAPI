@@ -1,33 +1,27 @@
 package com.company.financialmanagement.services;
 
-import com.company.financialmanagement.dtos.AuthenticationDTO;
 import com.company.financialmanagement.dtos.AuthenticationRegisterDTO;
+import com.company.financialmanagement.repositories.UserRepository;
+import com.company.financialmanagement.dtos.AuthenticationDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import com.company.financialmanagement.models.Token;
 import com.company.financialmanagement.models.User;
-import com.company.financialmanagement.repositories.UserRepository;
+import static org.junit.jupiter.api.Assertions.*;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
-@AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JwtServiceTest {
     @Autowired
     private AuthenticationService authenticationService;
+    private AuthenticationRegisterDTO registerDTO;
+    private AuthenticationDTO authenticationDTO;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private MockMvc mockMvc;
-
-   private AuthenticationRegisterDTO registerDTO;
-   private AuthenticationDTO authenticationDTO;
     @BeforeEach
     public void initTest() {
          registerDTO = AuthenticationRegisterDTO.builder()
