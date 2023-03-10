@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  financial-management:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    networks:
+      my-network:
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server:5432/financialmanagement
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres-server
+
+  postgres-server:
+    image: postgres:latest
+    ports:
+      - "3306:3306"
+      - "5432:5433"
+    networks:
+      my-network:
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=financialmanagement
+    volumes:
+      - postgres_data:/var/lib/mysql
+      - postgres_config:/etc/mysql/conf.d
+volumes:
+  postgres_data:
+  postgres_config:
+
+networks:
+  my-network:
