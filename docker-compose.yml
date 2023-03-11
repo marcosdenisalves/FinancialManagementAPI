@@ -5,6 +5,7 @@ services:
       context: .
     ports:
       - "8080:8080"
+      - "8000:8000"
     networks:
       my-network:
     environment:
@@ -21,7 +22,7 @@ services:
     image: postgres:latest
     ports:
       - "3306:3306"
-      - "5432:5433"
+      - "5433:5432"
     networks:
       my-network:
     environment:
