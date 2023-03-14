@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  financial-management:
+  java-app:
     build:
       context: .
     ports:
@@ -8,18 +8,20 @@ services:
       - "8000:8000"
     networks:
       my-network:
+    container_name: java-app
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server:5432/financialmanagement
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-server:5432/financialmanagement
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     volumes:
       - ./:/app
     depends_on:
-      - postgres-server
+      - db-server
 
-  postgres-server:
+  db-server:
     image: postgres:latest
+    container_name: db-server
     ports:
       - "3306:3306"
       - "5433:5432"

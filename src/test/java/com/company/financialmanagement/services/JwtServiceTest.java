@@ -11,10 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.TestPropertySource;
 
 
 @Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations = "classpath:application.properties")
 public class JwtServiceTest {
     @Autowired
     private AuthenticationService authenticationService;
