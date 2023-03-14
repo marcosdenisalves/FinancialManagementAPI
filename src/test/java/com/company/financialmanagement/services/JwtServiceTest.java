@@ -16,7 +16,6 @@ import org.springframework.test.context.TestPropertySource;
 
 @Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(locations = "classpath:application.properties")
 public class JwtServiceTest {
     @Autowired
     private AuthenticationService authenticationService;

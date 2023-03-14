@@ -23,8 +23,8 @@ services:
     image: postgres:latest
     container_name: db-server
     ports:
-      - "3306:3306"
-      - "5433:5432"
+      - "3307:3306"
+      - "5436:5432"
     networks:
       my-network:
     environment:
