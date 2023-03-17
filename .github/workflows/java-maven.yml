@@ -5,6 +5,14 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+     
+    container: eclipse-temurin
+    
+    services:
+     postgres:
+      image: postgres
+      env:
+        POSTGRES_PASSWORD: postgres
 
     steps:
       - uses: actions/checkout@v3
@@ -15,3 +23,6 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
