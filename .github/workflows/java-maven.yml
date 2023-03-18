@@ -6,7 +6,7 @@ jobs:
   
   container-job:
     runs-on: ubuntu-latest
-    container:maven
+    container: maven
 
     services:
       postgres:
