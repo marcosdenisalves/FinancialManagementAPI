@@ -3,7 +3,7 @@ name: Java CI
 on: [push, pull_request]
       
 jobs:
-  maven_build:
+  java_maven:
     runs-on: ubuntu-latest
     
     container: maven
@@ -32,6 +32,6 @@ jobs:
           POSTGRES_PORT: 5432
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
   
-  docker_build:
-    needs: maven_build
+  docker:
+    needs: java_maven
     uses: ./.github/workflows/docker.yml
