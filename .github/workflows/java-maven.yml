@@ -3,9 +3,9 @@ name: Java CI
 on: [push, pull_request]
       
 jobs:
-  
-  container-job:
+  build:
     runs-on: ubuntu-latest
+    
     container: maven
 
     services:
@@ -13,8 +13,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: postgres
-
-
+    
     steps:
       - name: checkout
         uses: actions/checkout@v3
