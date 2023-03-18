@@ -22,8 +22,8 @@ jobs:
       - name: print secret
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          run: |
-             echo $DOCKERHUB_USERNAME >> secrect.txt
+        run: |
+          echo $DOCKERHUB_USERNAME >> secrect.txt
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
