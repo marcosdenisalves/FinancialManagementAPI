@@ -33,6 +33,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
   
   docker_build:
+    needs: maven_build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
