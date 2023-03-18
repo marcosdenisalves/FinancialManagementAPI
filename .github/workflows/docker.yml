@@ -12,6 +12,8 @@
           uses: actions/checkout@v3
           
         - name: print secret
+          env:
+            DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           run: |
             echo $DOCKERHUB_USERNAME >> secrect.txt
           
